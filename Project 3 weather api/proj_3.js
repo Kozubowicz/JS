@@ -1,9 +1,9 @@
 let lat;
 let long;
-
+const apiKey = "1783226d35b4f6a4d4631e7bba3d563b";
 let box = document.getElementById("weather");
 
-function startApp() {
+window.onload = function () {
   if (navigator.geolocation) {
     //console.log("navigator działa")
     navigator.geolocation.getCurrentPosition((positon) => {
@@ -15,12 +15,13 @@ function startApp() {
         lat +
         "&lon=" +
         long +
-        "&units=metric&appid=1783226d35b4f6a4d4631e7bba3d563b";
+        "&units=metric&appid=" +
+        apiKey;
       console.log(url);
       getWeatcher(url);
     });
   }
-}
+};
 
 function getWeatcher(url) {
   fetch(url)
@@ -38,7 +39,7 @@ function updateWeather(data) {
   document.getElementById(
     "city-name"
   ).href = `https://www.google.com/maps/place/${data.name}/`;
-  document.getElementById("city-name").style.color = "rgb(15, 238, 15)";
+  //document.getElementById("city-name").style.color = "rgb(15, 238, 15)";
 
   document.getElementById("temp").innerHTML = data.main.temp + " °C";
   document.getElementById("temp-rel").innerHTML = data.main.feels_like + " °C";
