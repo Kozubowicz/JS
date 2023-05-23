@@ -1,0 +1,32 @@
+body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: black;
+}
+.box {
+  background-color: rgb(31, 28, 28);
+  margin: 15px;
+  padding: 30px;
+  border: 2px solid #aaa;
+  display: block;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px #999;
+
+  color: aliceblue;
+  text-align: center;
+}
+
+.tab {
+  text-align: left;
+  padding: 20px;
+}
+
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}

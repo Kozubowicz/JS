@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function generateUser(name, email, city, job) {
+        return { name: name, email: email, city: city, job: job };
+      }
+      let khamil = generateUser(
+        "Kamil",
+        "khamis@gmail.com",
+        "Ustron",
+        "broker"
+      );
+      let pablo = generateUser(
+        "Pawel",
+        "szabla@gmail.com",
+        "Jaworzno",
+        "Treiner"
+      );
+      console.log(khamil);
+      khamil.job = "streamer";
+      console.log(khamil);
+      console.log(pablo);
+    </script>
+  </body>
+</html>

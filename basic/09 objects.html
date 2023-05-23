@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let houseCity = {
+        city: "Wawa",
+        streeet: "zlota",
+        streetNum: 12,
+        surfaceArea: 50,
+        height: 30,
+      };
+      let bankAccount = {
+        name: "Kasia",
+        surname: "Nowak",
+        accountNumber: "2312321414",
+        balance: 1000000,
+      };
+      console.log(bankAccount);
+      console.log(bankAccount.balance);
+
+      bankAccount.balance = bankAccount.balance + 299;
+      console.log(bankAccount.balance);
+      bankAccount.country = "Poland";
+      console.log(bankAccount);
+    </script>
+  </body>
+</html>

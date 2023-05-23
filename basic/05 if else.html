@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      if (10 > 5) {
+        // true
+        console.log(" wykona się");
+      }
+      if (8 <= 7) {
+        // false
+        console.log(" wykona się");
+      }
+      let data1 = 9;
+      if (data1 > 5) {
+        // true
+        console.log(" wykona się bo 9 większe od 5 ");
+      }
+
+      if (-2) {
+        /*0 konwertowane jest na false,
+        zaś inne wartości na true
+        */
+        console.log("-2 wykona się");
+      }
+      let info = 23;
+
+      if (info < 0) {
+        console.log("info mniejsze od zera");
+      } else if (info == 0) {
+        console.log("info równe jest 0");
+      } else if (info == 2) {
+        console.log("info równe jest 2");
+      } else {
+        console.log("ostatni else dla info:", info);
+      }
+      /*
+            sprawdzenie temperatury w stopniach z zmiennej temperture
+            - czy temperature < 0  "bierzemy kurtkę"
+            - czy temperature == 0  "bierzemy lekką kurtkę"
+            - czy temperature >= 20  "bierzemy krótki rękaw"
+            - else "zostajemy w domu"
+        */
+
+      let temperature = 1;
+
+      if (temperature < 0) {
+        console.log("bierzemy kurtkę");
+      } else if (temperature == 0) {
+        console.log("bierzemy lekką kurtkę");
+      } else if (temperature >= 20) {
+        console.log("bierzemy krótki rękaw");
+      } else {
+        console.log("zostajemy w domu");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+                  Zadanie
+                  1. Stwórz konstruktor opisujący czasopismo
+                  2. Napisz metode addAdvert() umożliwijącą dodanie reklamy
+                     na konkretnej stronie w formie obiektu
+                     z nazwą reklamy oraz strony do tablicy adverts
+                     znajdującej się w obiekcie.
+                     Skorzystaj z metody push() tablicy aby dodać obiekt
+                     reklamy na koniec tablicy
+                  3. Napisz zmetodę printAdverts() pokazującą wszystkie
+                     reklamy
+                  4. Stwórz dowolny magazyn, dodaj kilka reklam i pokaż
+                     je w konsoli
+              */
+      function Magazine(title) {
+        this.title = title;
+        this.adverts = [];
+
+        this.addAdvert = function (name, page) {
+          this.adverts.push({
+            name: name,
+            page: page,
+          });
+        };
+        this.printAdverts = function () {
+          for (let i = 0; i < this.adverts.length; i++) {
+            console.log(
+              "Nazwa reklamy: " +
+                this.adverts[i].name +
+                ", strona: " +
+                this.adverts[i].page
+            );
+          }
+        };
+      }
+      let magazine1 = new Magazine("+Magazine");
+      console.log(magazine1);
+      magazine1.addAdvert("Sushi", 2);
+      magazine1.addAdvert("Witcher", 6);
+      magazine1.addAdvert("Ori", 9);
+      magazine1.addAdvert("Efectiw mass", 13);
+      magazine1.printAdverts();
+    </script>
+  </body>
+</html>

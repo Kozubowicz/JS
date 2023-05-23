@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            callback - zadanie
+            1. Napisz funkcję greaterThan6 która 
+               przyjmie tablicę liczb oraz callback.
+            2. W funkcji sprawdź wszystkie elementy 
+               tablicy, jeżeli którykolwiek jest
+               większy od 6 to przekaż go do callback
+            3. Callback to osobna funkcja która pokazuje
+               w konsoli przekazaną wartość
+            4. Wywołaj greaterThan6 z tablicą 
+               [1,2,3,4,5,6,7,8,9,10,11,12]
+        */
+      function show(val) {
+        console.log(val);
+      }
+
+      function greaterThan6(arr, callback) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > 6) {
+            callback(arr[i]);
+          }
+        }
+      }
+
+      let arguments = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+      greaterThan6(arguments, show);
+    </script>
+  </body>
+</html>

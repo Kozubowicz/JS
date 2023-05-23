@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const url = "https://swapi.dev/api/people/1/";
+
+      fetch(url)
+        .then((Response) => Response.json())
+        .then(showData);
+
+      obj;
+      function showData(data) {
+        console.log(data);
+        let obj = JSON.stringify(data);
+      }
+    </script>
+  </body>
+</html>

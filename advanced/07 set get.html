@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            Zadanie
+            1. Napisz literał obiektu truck opisujący ciężarówkę
+               z właściwościami: _brand, _model i _topSpeed:0
+            2. Dodaj gettery i settery dla powyższych właściwości
+               Dla topSpeed w setter sprawdż czy wartość jest większa
+               od 0 i tylko wtedy zapisz prędkość w _topSpeed,
+               w przeciwnym wypadku pokaż w konsoli "Speed to low"
+            3. Ustaw wartości brand, model i topSpeed, pokaż
+               te wartości w konsoli
+        */
+      const truck = {
+        _brand: null,
+        _model: null,
+        _topSpeed: 0,
+        set brand(newBrand) {
+          this._brand = newBrand;
+        },
+        set model(newModel) {
+          this._model = newModel;
+        },
+        set topSpeed(newSpeed) {
+          if (newSpeed > 0) {
+            this._topSpeed = newSpeed;
+          } else {
+            console.log("Speed to low");
+          }
+        },
+        get brand() {
+          return this._brand;
+        },
+        get model() {
+          return this._model;
+        },
+        get topSpeed() {
+          return this._topSpeed;
+        },
+      };
+      truck.brand = "Ford";
+      truck.topSpeed = 0;
+      console.log(truck.brand);
+    </script>
+  </body>
+</html>

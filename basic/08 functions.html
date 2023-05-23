@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let score = add(3, 12, 9, 9);
+      console.log("Wynik: " + score);
+      add(2, 1);
+      add(5, 9, 0, 8, 4, 8, 0);
+      add(5, 4, 8, 0);
+      add(5, 9, 0);
+      function add() {
+        let i = arguments.length;
+        let k = 0;
+        for (let j = 0; j < i; j++) {
+          if (j == i - 1) {
+          } else {
+          }
+          k += arguments[j];
+        }
+        console.log(k);
+        return k;
+      }
+    </script>
+  </body>
+</html>

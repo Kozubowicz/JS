@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let paragraf = document.createElement("paragraf");
+      paragraf.innerHTML = "Click me";
+
+      document.getElementsByTagName("body")[0].appendChild(paragraf);
+      document.addEventListener("click", function (event) {
+        console.log(event);
+        console.log(event.clientX, event.clientY);
+      });
+
+      paragraf.addEventListener("click", (event) => {
+        console.log("p click");
+      });
+    </script>
+  </body>
+</html>

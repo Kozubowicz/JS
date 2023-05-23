@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            Zadanie z typeof
+            1) Stwórz funkcję createUser z parametrami:
+                - name
+                - contact
+            2) W ciele funkcji stwórz zmienną user w której będzie
+               obiekt reprezentujący użytkownika. Dodaj do obiektu
+               nazwę użytkownika z parametru.
+            3) Parametr contact będzie mógł przyjąć tekst lub liczbę.
+               Sprawdź za pomocą typeof jaki typ ma przekazany
+               parametr contact. Jeżeli jest to typ string:
+               if (typeof contact == "string")
+               to zakładamy, że jest to adres email, który przypiszesz
+               do obiektu użytkownika.
+               Natomiast jeśli contact jest liczbą to zakładamy, że
+               jest to telefon, więc zapisz właściwość telephone
+               w zwracanym obiekcie użytkownika.
+            4) Wywołaj funkcję z dwoma przypadkami:
+                - imię Ola, contact (string): ola@example.com
+                - imię Kasia, contact (number): 987654321
+               Sprawdź w konsoli zwrócone obiekty.
+        */
+      function createUser(name, contact) {
+        let user = { name: name, mail: null, tel: null };
+        if (typeof contact == "string") {
+          user.mail = contact;
+        }
+        if (typeof contact == "number") {
+          user.tel = contact;
+        }
+        return user;
+      }
+
+      let user1 = createUser("Ola", "ola@example.com");
+      console.log(user1);
+
+      let user2 = createUser("Kasia", 987654321);
+      console.log(user2);
+    </script>
+  </body>
+</html>

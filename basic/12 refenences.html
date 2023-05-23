@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            Przekazanie danych przez referencję - zadanie
+            1. Napisz funkcję, która przyjmie tablicę
+               i pomnoży każdy z elementów przez 3 
+               oraz zapisze wynik mnożenia w tablicy
+               pod aktualnym indeksem.
+            2. Pamiętaj że tablica to obiekt więc jest 
+               przekazana do funkcji przez referencję,
+               wprowadzone w niej zmiany będą zapisane
+            3. Wywołaj funkcję na tablicy [1,2,3,4,5,6,7]
+        */
+      function multi(val) {
+        for (let i = 0; i < val.length; i++) {
+          val[i] *= 3;
+        }
+      }
+
+      let values = [1, 2, 3, 4, 5, 6, 7];
+      console.log(values);
+      multi(values);
+      console.log(values);
+    </script>
+  </body>
+</html>

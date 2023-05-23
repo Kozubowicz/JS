@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const Factory = {
+        name: "Factory",
+        city: "Warszawa",
+        employees: [],
+        brand: "Sony",
+        addEmployee: function (name, surname) {
+          const obj = {
+            name: name,
+            surname: surname,
+            email: `${name}.${surname}@gmail.com`,
+          };
+          this.employees[this.employees.length] = obj;
+        },
+        showEmployees: function () {
+          console.log(this.name, "employees: ");
+          for (let i = 0; i < this.employees.length; i++) {
+            console.log(
+              this.employees[i].name +
+                " " +
+                this.employees[i].surname +
+                " email: " +
+                this.employees[i].email
+            );
+          }
+        },
+      };
+      Factory.addEmployee("kasia", "zagłoba");
+      Factory.addEmployee("Kinga", "Nowak");
+      //console.log(Factory.employees);
+      Factory.showEmployees();
+    </script>
+  </body>
+</html>

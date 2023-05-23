@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(window.innerWidth);
+
+      setTimeout(function () {
+        console.log("After timeout");
+      }, 800);
+
+      let i = 0;
+      let interValID = setInterval(() => {
+        console.log(i);
+        i++;
+      }, 600);
+
+      //window.alert("Hello Wrold");
+      let userInput = prompt("Give value:");
+      //let floatNum = parseFloat(userInput);
+
+      console.log("Your numer + 100: ", +userInput + 100);
+    </script>
+  </body>
+</html>
+12 33

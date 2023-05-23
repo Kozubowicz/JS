@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aktualna prognoza pogody</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="startApp()">
+    <div id="weather" class="box">
+      Prognoza pogody
+      <hr />
+      <table class="tab">
+        <tr>
+          <td><img id="weather-img" src="" alt="picture" /></td>
+          <td><a href="" id="city-name" >City name</div></td>
+        </tr>
+
+        <tr>
+          <td>Temperatura:</td>
+          <td><div id="temp">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Temperatura odczuwalna:</td>
+          <td><div id="temp-rel">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Wilgotność:</td>
+          <td><div id="hum">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Ciśnienie:</td>
+          <td><div id="pressure">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Prędkość wiatru:</td>
+          <td><div id="wind-speed">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Wschód słońca:</td>
+          <td><div id="sunrise">---</div></td>
+        </tr>
+
+        <tr>
+          <td>Zachód słońca:</td>
+          <td><div id="sunset">---</div></td>
+        </tr>
+      </table>
+    </div>
+  <script src="proj_3.js"></script>
+  </body>
+</html>
