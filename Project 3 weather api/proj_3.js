@@ -53,4 +53,7 @@ function updateWeather(data) {
   date = new Date(data.sys.sunset * 1000);
   document.getElementById("sunset").innerHTML =
     date.getHours() + ":" + date.getMinutes();
+
+  document.getElementById("wDescription").innerHTML =
+    data.weather[0].description;
 }
