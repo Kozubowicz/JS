@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Car {
+        constructor(name, year) {
+          this.name = name;
+          this.year = year;
+        }
+        print() {
+          console.log("Car: " + this.name + " " + this.year);
+        }
+      }
+
+      const car1 = new Car("Rosomak", 2019);
+      car1.print();
+
+      let Dog = class BasicDog {
+        constructor(name) {
+          this.name = name;
+          this._age = 1;
+          if (Dog.count === undefined) Dog.count = 0;
+        }
+        getName = () => {
+          return this.name;
+        };
+        set age(value) {
+          if (value > 0) this._age = value;
+        }
+
+        get age() {
+          return this._age;
+        }
+
+        static getNewDog() {
+          return new Dog("default dog");
+        }
+
+        static getDogCount() {
+          return Dog.count;
+        }
+      };
+
+      const dog1 = new Dog("Guzik");
+      console.log(dog1.getName());
+      console.log(Dog.name);
+      dog1.age = 3;
+      console.log(dog1.age);
+
+      const dog2 = Dog.getNewDog();
+      console.log(dog2.getName());
+
+      console.dir(Dog);
+      console.log(Dog.getDogCount());
+
+      class Engines extends Car {
+        constructor(name, year) {
+          super(name, year);
+        }
+        print() {
+          super.print();
+          console.log("Engine: " + this.name + " " + this.year);
+        }
+      }
+
+      const engine1 = new Engines("V8", "2004");
+      engine1.print();
+    </script>
+  </body>
+</html>
