@@ -11,7 +11,7 @@ window.onload = function () {
       long = positon.coords.longitude;
 
       const url =
-        "http://api.openweathermap.org/data/2.5/weather?lat=" +
+        "https://api.openweathermap.org/data/2.5/weather?lat=" +
         lat +
         "&lon=" +
         long +
