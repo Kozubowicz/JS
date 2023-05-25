@@ -39,11 +39,13 @@ class BooksList {
 
     const author = document.getElementById("bookAuthor").value;
     const title = document.getElementById("bookTitle").value;
-    e.preventDefault();
+
     if (author === "" || title === "") {
       console.log("blank data");
       return;
     }
+
+    e.preventDefault();
     console.log("Autor: " + author + " Tytuł: " + title);
     const book = new Book(title, author);
     this.addBook(book);
@@ -61,6 +63,45 @@ class BooksList {
     });
     this.saveData();
   }
+  moveBookUp(bookId) {
+    let arr = this.books;
+
+    for (let a = 0; a < arr.length; a++) {
+      let el = arr[a];
+
+      if (el.id == bookId) {
+        if (a >= 1) {
+          let temp = arr[a - 1];
+          arr[a - 1] = arr[a];
+          arr[a] = temp;
+          break;
+        }
+      }
+    }
+    this.saveData();
+    ui.delateAllBookRows();
+    this.loadDataFromStorage();
+  }
+
+  moveBookDown(bookId) {
+    let arr = this.books;
+
+    for (let a = 0; a < arr.length; a++) {
+      let el = arr[a];
+
+      if (el.id == bookId) {
+        if (a <= arr.length - 2) {
+          let temp = arr[a + 1];
+          arr[a + 1] = arr[a];
+          arr[a] = temp;
+          break;
+        }
+      }
+    }
+    this.saveData();
+    ui.delateAllBookRows();
+    this.loadDataFromStorage();
+  }
 
   saveData() {
     storage.saveItems(this.books);
@@ -76,6 +117,25 @@ class Ui {
     booksList.removeBookById(bookId);
   }
 
+  delateAllBookRows() {
+    const tbodyRows = document.querySelectorAll("#booksTable tbody tr");
+    tbodyRows.forEach(function (el) {
+      el.remove();
+    });
+  }
+
+  UpBook(e) {
+    const bookId = e.target.getAttribute("data-book-id");
+    console.log("up", bookId);
+    booksList.moveBookUp(bookId);
+  }
+
+  DownBook(e) {
+    const bookId = e.target.getAttribute("data-book-id");
+    console.log("down", bookId);
+    booksList.moveBookDown(bookId);
+  }
+
   addBookToTable(book) {
     const tbody = document.querySelector("#booksTable tbody");
     const tr = document.createElement("tr");
@@ -85,6 +145,9 @@ class Ui {
     <td> ${book.author}</td>
     <td> 
     <button type="button" data-book-id="${book.id}" class ="btn btn-danger btn-sm delete">Skasuj</button>
+    
+    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Up"> 🢁 </button>
+    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Down"> 🢃 </button>
     </td>`;
 
     tbody.appendChild(tr);
@@ -93,11 +156,23 @@ class Ui {
       `button.delete[data-book-id='${book.id}']`
     );
     deleteButton.addEventListener("click", (e) => this.deleteBook(e));
+
+    let UpButton = document.querySelector(
+      `button.Up[data-book-id='${book.id}']`
+    );
+    UpButton.addEventListener("click", (e) => this.UpBook(e));
+
+    let DownButton = document.querySelector(
+      `button.Down[data-book-id='${book.id}']`
+    );
+    DownButton.addEventListener("click", (e) => this.DownBook(e));
+
     this.clearForm();
   }
   clearForm() {
     document.getElementById("bookTitle").value = "";
     document.getElementById("bookAuthor").value = "";
+    document.getElementById("bookForm").classList.remove("was-validated");
   }
 }
 
@@ -124,3 +199,27 @@ storage.getItems()
 
 */
 const storage = new Storage();
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  "use strict";
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
