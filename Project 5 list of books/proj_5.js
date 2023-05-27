@@ -15,6 +15,7 @@ class BooksList {
   constructor() {
     this.books = [];
   }
+
   init() {
     document
       .getElementById("saveButton")
