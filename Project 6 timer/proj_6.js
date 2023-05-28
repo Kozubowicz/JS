@@ -1,6 +1,7 @@
 let box = document.getElementById("document");
 let clc = document.getElementById("clock");
 let bt = document.getElementById("bt");
+
 window.onload = function () {
   watch.init();
 };
@@ -114,12 +115,6 @@ class Ui {
         clearInterval(this.intervalID);
         clc.innerHTML = `<h2>Koniec odliczania</h2>`;
       } else {
-        /*
-      let days = Math.floor(countdown / (24 * 60 * 60 * 1000));
-      let hou = Math.floor((countdown % (60 * 60 * 24)) / (60 * 60));
-      let min = Math.floor((countdown % (60 * 60)) / 60);
-      let sec = Math.floor(countdown % 60);
-      */
         let days = Math.floor(countdown / (24 * 60 * 60 * 1000));
         let pozostaleMilisekundy = countdown - days * 24 * 60 * 60 * 1000;
 
