@@ -1,32 +1,18 @@
 window.onload = function () {
-  quiz.init();
+  fetch("questions.txt")
+    .then((response) => response.text())
+    .then((data) => quiz.init(data));
 };
 
 class Quiz {
-  questions = [
-    {
-      q: "Ile to jest 10 / 2 ?",
-      answers: ["4", "5", "4.5"],
-      correctAnswerNum: 1,
-    },
-    {
-      q: "Ile to jest 16 + 2 ?",
-      answers: ["18", "16", "20"],
-      correctAnswerNum: 0,
-    },
-    {
-      q: "Ile to jest 8 * 2 ?",
-      answers: ["18", "10", "16"],
-      correctAnswerNum: 2,
-    },
-  ];
-
+  questions = [];
   currentQuestionIndex = -1;
   heading = null;
   questionParagraph = null;
   answer0 = null;
   answer1 = null;
   answer2 = null;
+  answer3 = null;
   correctAnswerNum = null;
   userSelectedInput = null;
   userCorrectAnswers = 0;
@@ -35,11 +21,25 @@ class Quiz {
   nextButton = null;
   modalWindow = null;
 
-  init() {
+  init(data) {
+    const lines = data.split("\n");
+    for (let i = 0; i < lines.length / 6; i++) {
+      const tmp = { q: null, answers: [], correctAnswerNum: null };
+      tmp.q = lines[0 + i * 6];
+      tmp.answers[0] = lines[1 + i * 6];
+      tmp.answers[1] = lines[2 + i * 6];
+      tmp.answers[2] = lines[3 + i * 6];
+      tmp.answers[3] = lines[4 + i * 6];
+      tmp.correctAnswerNum = +lines[5 + i * 6];
+
+      this.questions.push(tmp);
+    }
+
     this.heading = document.querySelector(".alert-heading");
     this.answer0 = document.querySelector("#answer0");
     this.answer1 = document.querySelector("#answer1");
     this.answer2 = document.querySelector("#answer2");
+    this.answer3 = document.querySelector("#answer3");
     this.questionParagraph = document.querySelector("#question");
     this.saveButton = document.querySelector("#saveButton");
     this.nextButton = document.querySelector("#nextButton");
@@ -92,7 +92,6 @@ class Quiz {
 
   setNextQuestionData = () => {
     this.currentQuestionIndex++;
-
     if (this.currentQuestionIndex >= this.questions.length) {
       console.log("Koniec quizu");
       this.showModalResults();
@@ -107,6 +106,7 @@ class Quiz {
     this.answer0.innerHTML = question.answers[0];
     this.answer1.innerHTML = question.answers[1];
     this.answer2.innerHTML = question.answers[2];
+    this.answer3.innerHTML = question.answers[3];
     this.correctAnswerNum = question.correctAnswerNum;
 
     document.querySelectorAll("input[type ='radio']").forEach((el) => {
