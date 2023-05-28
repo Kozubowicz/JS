@@ -1,6 +1,0 @@
-Która planeta jest znana jako "Czerwona Planeta"?
-Mars
-Wenus
-Merkury
-Saturn
-0
