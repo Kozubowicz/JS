@@ -23,6 +23,7 @@ class Quiz {
 
   init(data) {
     const lines = data.split("\n");
+
     for (let i = 0; i < lines.length / 6; i++) {
       const tmp = { q: null, answers: [], correctAnswerNum: null };
       tmp.q = lines[0 + i * 6];
