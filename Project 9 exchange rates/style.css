@@ -1,0 +1,32 @@
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: rgb(255, 255, 255);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-size: 2rem;
+}
+
+table {
+  color: white;
+  border: 1px solid lightgray;
+  background-color: #17161f;
+  border-spacing: 6px;
+  font-size: 1rem;
+}
+
+td {
+  border-bottom: 1px solid rgb(121, 117, 117);
+}
+tr:hover {
+  background-color: lightgray;
+  color: black;
+}
+
+#myChart {
+  width: 400px;
+  height: 400px;
+}
