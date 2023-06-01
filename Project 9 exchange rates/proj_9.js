@@ -1,6 +1,7 @@
 const url = `http://api.nbp.pl/api/exchangerates/tables/a/last?format=json`;
 
 window.onload = function () {
+  google.charts.load("current", { packages: ["corechart"] });
   getData(url);
 };
 
@@ -15,12 +16,23 @@ class Currency {
   num = null;
   date = null;
 
+  modalWindow = null;
+
   updateRates(data) {
     this.currencyData = data[0].rates;
     this.num = data[0].no;
     this.date = data[0].effectiveDate;
     console.log(data);
     this.printTable();
+
+    this.initModal();
+    //this.modalWindow.toggle();
+  }
+
+  initModal() {
+    this.modalWindow = new bootstrap.Modal(
+      document.getElementById("modalWindow")
+    );
   }
 
   printTable() {
@@ -36,10 +48,116 @@ class Currency {
           <td>${el.code}</td>
           <td>${el.mid}</td>        
     `;
-      console.log(tr);
-      let tBody = document.querySelector("#currentTable tbody");
-      tBody.appendChild(tr);
+
+      let tableContainer = document.querySelector("#currentTable tbody");
+
+      tr.addEventListener("click", function () {
+        let name = this.cells[2].textContent;
+
+        ui.code = name;
+        currency.modalWindow.toggle();
+      });
+
+      tableContainer.appendChild(tr);
     }
   }
 }
 const currency = new Currency();
+
+window.addEventListener("resize", (e) => chart.drawChart());
+
+window.addEventListener("shown.bs.modal", (e) => ui.init());
+
+class Ui {
+  endDate = null;
+  startDate = null;
+  code = null;
+
+  init() {
+    this.setData();
+
+    document
+      .getElementById("codeCheckButton")
+      .addEventListener("click", (e) => this.sendData(e));
+  }
+
+  setData() {
+    this.endDate = new Date();
+    let endDataField = document.getElementById("end-date");
+    this.endDate = this.endDate.toISOString().substring(0, 10);
+    endDataField.value = this.endDate;
+
+    this.startDate = new Date(new Date() - 90 * 24 * 60 * 60 * 1000);
+    let startDataField = document.getElementById("start-date");
+    this.startDate = this.startDate.toISOString().substring(0, 10);
+    startDataField.value = this.startDate;
+
+    this.sendData();
+  }
+
+  sendData() {
+    console.log(this.code);
+    chart.getData(
+      this.code,
+      document.getElementById("start-date").value,
+      document.getElementById("end-date").value
+    );
+  }
+}
+const ui = new Ui();
+
+class Chart {
+  data;
+  chart;
+
+  options = {
+    //title: "Wykres liniowy",
+    curveType: "linear",
+    legend: {
+      position: "bottom",
+      textStyle: { color: "#00FF00" },
+    },
+    colors: ["#00FF00"],
+
+    backgroundColor: "black",
+    hAxis: {
+      textStyle: {
+        color: "#00FF00", // Kolor tekstu osi X
+      },
+    },
+    vAxis: {
+      textStyle: {
+        color: "#00FF00", // Kolor tekstu osi Y
+      },
+    },
+  };
+
+  getData(code, startDate, endDate) {
+    const url = `http://api.nbp.pl/api/exchangerates/rates/a/${code}/${startDate}/${endDate}/?format=json`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => chart.updateChart(data));
+  }
+
+  updateChart(date) {
+    console.log(date);
+
+    this.data = new google.visualization.DataTable();
+    this.data.addColumn("string", "Data");
+    this.data.addColumn("number", date.code.toUpperCase() + " (wartość w PLN)");
+
+    for (let [lp, el] of date.rates.entries()) {
+      this.data.addRows([[date.rates[lp].effectiveDate, date.rates[lp].mid]]);
+    }
+    this.drawChart();
+  }
+
+  drawChart() {
+    this.chart = new google.visualization.LineChart(
+      document.getElementById("chart_div")
+    );
+    this.chart.draw(this.data, this.options);
+  }
+}
+const chart = new Chart();
