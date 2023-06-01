@@ -29,14 +29,16 @@ class Currency {
     ).innerHTML = `Tabela kursów walut NBP nr: ${this.num} z dnia: ${this.date} <br>`;
 
     for (let [lp, el] of this.currencyData.entries()) {
-      document.getElementById("currentTable").innerHTML += `   
-    <tr>
+      let tr = document.createElement("tr");
+      tr.innerHTML = `       
           <td>${lp}.</td>
           <td>${el.currency}</td>
           <td>${el.code}</td>
-          <td>${el.mid}</td>
-        </tr>
+          <td>${el.mid}</td>        
     `;
+      console.log(tr);
+      let tBody = document.querySelector("#currentTable tbody");
+      tBody.appendChild(tr);
     }
   }
 }
