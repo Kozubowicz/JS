@@ -2,21 +2,68 @@ const url = `http://api.nbp.pl/api/exchangerates/tables/a/last?format=json`;
 
 window.onload = function () {
   google.charts.load("current", { packages: ["corechart"] });
-  getData(url);
+  ui.init();
 };
 
-function getData(url) {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => currency.updateRates(data));
-}
+window.addEventListener("resize", (e) => chart.drawChart());
 
-class Currency {
+window.addEventListener("shown.bs.modal", (e) => ui.initChart());
+
+class Ui {
+  endDate = null;
+  startDate = null;
+  modalWindow = null;
+
+  code = null;
+
+  init() {
+    this.initTable();
+    this.initModal();
+  }
+
+  initTable() {
+    const url = `http://api.nbp.pl/api/exchangerates/tables/a/last?format=json`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => table.updateRates(data));
+  }
+
+  initModal() {
+    this.modalWindow = new bootstrap.Modal(
+      document.getElementById("modalWindow")
+    );
+    document
+      .getElementById("codeCheckButton")
+      .addEventListener("click", (e) => this.getChart(e));
+  }
+
+  initChart() {
+    this.endDate = new Date();
+    let endDataField = document.getElementById("end-date");
+    this.endDate = this.endDate.toISOString().substring(0, 10);
+    endDataField.value = this.endDate;
+
+    this.startDate = new Date(new Date() - 90 * 24 * 60 * 60 * 1000);
+    let startDataField = document.getElementById("start-date");
+    this.startDate = this.startDate.toISOString().substring(0, 10);
+    startDataField.value = this.startDate;
+    this.getChart();
+  }
+  getChart() {
+    chart.getData(
+      this.code,
+      document.getElementById("start-date").value,
+      document.getElementById("end-date").value
+    );
+  }
+}
+const ui = new Ui();
+
+class Table {
   currencyData = [];
   num = null;
   date = null;
-
-  modalWindow = null;
 
   updateRates(data) {
     this.currencyData = data[0].rates;
@@ -24,15 +71,6 @@ class Currency {
     this.date = data[0].effectiveDate;
     console.log(data);
     this.printTable();
-
-    this.initModal();
-    //this.modalWindow.toggle();
-  }
-
-  initModal() {
-    this.modalWindow = new bootstrap.Modal(
-      document.getElementById("modalWindow")
-    );
   }
 
   printTable() {
@@ -53,58 +91,14 @@ class Currency {
 
       tr.addEventListener("click", function () {
         let name = this.cells[2].textContent;
-
         ui.code = name;
-        currency.modalWindow.toggle();
+        ui.modalWindow.toggle();
       });
-
       tableContainer.appendChild(tr);
     }
   }
 }
-const currency = new Currency();
-
-window.addEventListener("resize", (e) => chart.drawChart());
-
-window.addEventListener("shown.bs.modal", (e) => ui.init());
-
-class Ui {
-  endDate = null;
-  startDate = null;
-  code = null;
-
-  init() {
-    this.setData();
-
-    document
-      .getElementById("codeCheckButton")
-      .addEventListener("click", (e) => this.sendData(e));
-  }
-
-  setData() {
-    this.endDate = new Date();
-    let endDataField = document.getElementById("end-date");
-    this.endDate = this.endDate.toISOString().substring(0, 10);
-    endDataField.value = this.endDate;
-
-    this.startDate = new Date(new Date() - 90 * 24 * 60 * 60 * 1000);
-    let startDataField = document.getElementById("start-date");
-    this.startDate = this.startDate.toISOString().substring(0, 10);
-    startDataField.value = this.startDate;
-
-    this.sendData();
-  }
-
-  sendData() {
-    console.log(this.code);
-    chart.getData(
-      this.code,
-      document.getElementById("start-date").value,
-      document.getElementById("end-date").value
-    );
-  }
-}
-const ui = new Ui();
+const table = new Table();
 
 class Chart {
   data;
