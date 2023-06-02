@@ -31,6 +31,7 @@ function getWeatcher(url) {
 
 function updateWeather(data) {
   console.log(data);
+  //let icon = data.weather[0].icon;
   let imgUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   document.getElementById("weather-img").setAttribute("src", imgUrl);
 
@@ -38,6 +39,7 @@ function updateWeather(data) {
   document.getElementById(
     "city-name"
   ).href = `https://www.google.com/maps/place/${data.name}/`;
+  //document.getElementById("city-name").style.color = "rgb(15, 238, 15)";
 
   document.getElementById("temp").innerHTML = data.main.temp + " °C";
   document.getElementById("temp-rel").innerHTML = data.main.feels_like + " °C";
