@@ -116,16 +116,25 @@ class Ui {
         clc.innerHTML = `<h2>Koniec odliczania</h2>`;
       } else {
         let days = Math.floor(countdown / (24 * 60 * 60 * 1000));
+        if (days < 10) {
+          days = "0" + days;
+        }
         let pozostaleMilisekundy = countdown - days * 24 * 60 * 60 * 1000;
 
         let hou = Math.floor(pozostaleMilisekundy / (60 * 60 * 1000));
         pozostaleMilisekundy = pozostaleMilisekundy - hou * 60 * 60 * 1000;
-
+        if (hou < 10) {
+          hou = "0" + hou;
+        }
         let min = Math.floor(pozostaleMilisekundy / (60 * 1000));
         pozostaleMilisekundy = pozostaleMilisekundy - min * 60 * 1000;
-
+        if (min < 10) {
+          min = "0" + min;
+        }
         let sec = Math.floor(pozostaleMilisekundy / 1000);
-
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
         clc.innerHTML =
           "Dni: " + days + "</br> Czas: " + hou + ":" + min + ":" + sec;
       }
