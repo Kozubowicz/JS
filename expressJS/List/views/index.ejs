@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Przykładowa strona</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding: 30px;
+        background-color: #333;
+      }
+
+      .table {
+        color: #fcf7f7;
+
+        background-color: black;
+      }
+      a {
+        color: #fdfdfd;
+        text-decoration: underline;
+      }
+
+      .table th,
+      .table td {
+        border-color: #636262;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nazwy Projektów</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% folders.forEach(folder => { %>
+          <tr>
+            <td><a href="/<%= folder %>"><%= folder %></a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
