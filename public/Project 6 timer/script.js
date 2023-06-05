@@ -34,6 +34,9 @@ class Ui {
     clearInterval(this.intervalID);
 
     bt.innerHTML = "";
+    let time = new Date();
+    clc.innerHTML = time.toLocaleTimeString();
+
     this.intervalID = setInterval(function () {
       let time = new Date();
       clc.innerHTML = time.toLocaleTimeString();
