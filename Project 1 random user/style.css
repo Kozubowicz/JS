@@ -1,6 +1,8 @@
 body {
-  background-color: black;
-  padding: 2em;
+  background-image: url("../picture.jpg");
+  background-repeat: repeat;
+  background-position: right;
+  padding: 50px;
 }
 
 h2 {
@@ -13,6 +15,7 @@ h2 {
 }
 .column {
   flex: 50%;
+  padding-top: 50px;
 }
 
 .user-profile {

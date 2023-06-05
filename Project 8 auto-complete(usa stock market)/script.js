@@ -1,5 +1,3 @@
-//NI4JYHXJ7GCF1HDL
-//const url = https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesla&apikey=NI4JYHXJ7GCF1HDL;
 window.onload = function () {
   autocomplete.init();
 };
