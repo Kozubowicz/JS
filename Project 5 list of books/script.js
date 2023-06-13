@@ -147,8 +147,8 @@ class Ui {
     <td> 
     <button type="button" data-book-id="${book.id}" class ="btn btn-danger btn-sm delete">Skasuj</button>
     
-    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Up"> 🢁 </button>
-    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Down"> 🢃 </button>
+    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Up">  ▲ </button>
+    <button type="button" data-book-id="${book.id}" class ="btn btn-info btn-sm Down"> ▼ </button>
     </td>`;
 
     tbody.appendChild(tr);
