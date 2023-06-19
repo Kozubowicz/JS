@@ -28,7 +28,7 @@ function Description() {
         <li>Was orginaly created by Jordan Walke</li>
         <li>Has well over 100K stars on Github</li>
         <li>Is maintained by Facebook</li>
-        <li>Powers thousands of enterprise apps, including o=mobile ones</li>
+        <li>Powers thousands of enterprise apps, including mobile ones</li>
       </ol>
     </div>
   );
