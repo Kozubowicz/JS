@@ -5,7 +5,7 @@ let box = document.getElementById("weather");
 
 window.onload = function () {
   if (navigator.geolocation) {
-    //console.log("navigator działa")
+    console.log("navigator działa");
     navigator.geolocation.getCurrentPosition((positon) => {
       lat = positon.coords.latitude;
       long = positon.coords.longitude;
