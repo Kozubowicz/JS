@@ -1,39 +1,24 @@
 import React from "react";
 import Logo from "./../images/Logo.png";
 
-export default function NavBar({ setMode, setMovieIndex }) {
+import Twitter from "./../images/Twitter.png";
+
+export default function NavBar({ setMode, mode }) {
   return (
     <nav>
-      <div className="PageTitle">
-        <img src={Logo} className="icon" alt="Logo" width={80} />
-        <h3 className="NavTile">Movie Database</h3>
+      <div className="NavLogo">
+        <a href="/">
+          <img src={Logo} className="icon" alt="Logo" />
+        </a>
+        <h3 className="NavTile">Restaurant survey</h3>
       </div>
-      <div className="ModeBar">
-        <button
-          onClick={() => {
-            setMovieIndex(null);
-            setMode("MovieGallery");
-          }}
-        >
-          Movie Gallery
-        </button>
-        <button
-          onClick={() => {
-            setMovieIndex(null);
-            setMode("MovieList");
-          }}
-        >
-          Movie List
-        </button>
-        <button
-          onClick={() => {
-            setMovieIndex(null);
-            setMode("AddMovie");
-          }}
-        >
-          Add Movie
-        </button>
-      </div>
+      <h3>Project XIII</h3>
+      <a href="https://twitter.com/NRNonline">
+        <img src={Twitter} className="icon" alt="Logo" />
+      </a>
+      <button className="modeButton" onClick={() => setMode(!mode)}>
+        Mode
+      </button>
     </nav>
   );
 }
