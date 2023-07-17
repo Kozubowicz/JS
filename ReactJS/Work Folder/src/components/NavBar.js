@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "./../images/Logo.png";
+import Cart from "./../images/Cart.png";
+import { MyContext } from "../App";
 
-import Twitter from "./../images/Twitter.png";
-
-export default function NavBar({ setMode, mode }) {
+export default function NavBar() {
+  const { cart } = useContext(MyContext);
   return (
     <nav>
-      <div className="NavLogo">
-        <a href="/">
-          <img src={Logo} className="icon" alt="Logo" />
-        </a>
-        <h3 className="NavTile">Restaurant survey</h3>
+      <div className="navContainer">
+        <div className="NavLogo">
+          <a href="/">
+            <img src={Logo} className="icon" alt="Logo" />
+          </a>
+          <h3 className="NavTile">Online shop</h3>
+        </div>
+        <h3>Project XIV</h3>
       </div>
-      <h3>Project XIII</h3>
-      <a href="https://twitter.com/NRNonline">
-        <img src={Twitter} className="icon" alt="Logo" />
-      </a>
-      <button className="modeButton" onClick={() => setMode(!mode)}>
-        Mode
-      </button>
+      <div className="navContainer">
+        <div>
+          <button>Home</button>
+          <button>Store</button>
+          <button>About</button>
+        </div>
+        <div>
+          {cart && cart.length > 0 ? (
+            <button className="cartButton">
+              <img src={Cart} width={20}></img>
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
     </nav>
   );
 }

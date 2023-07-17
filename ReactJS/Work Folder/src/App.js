@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import NavBar from "./components/NavBar";
-import Survey from "./components/Survey";
 import Footer from "./components/Footer";
 
-import NewRestaurant from "./components/NewRestaurant";
+export const MyContext = React.createContext();
 
 export default function App() {
-  const [mode, setMode] = useState(true);
+  const [cart, setCart] = useState([]);
   return (
-    <div className="App">
-      <NavBar mode={mode} setMode={setMode} />
-
-      {mode === true ? <Survey /> : <NewRestaurant />}
-
-      <Footer />
-    </div>
+    <MyContext.Provider value={{ cart }}>
+      <div className="App">
+        <NavBar />
+        <Footer />
+      </div>
+    </MyContext.Provider>
   );
 }
