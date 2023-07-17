@@ -5,20 +5,28 @@ export function NewTag() {
   return (
     <>
       <div className="TagsContainer">
-        {Tags.map((e) => (
-          <div key={`${e.id}container`}>
-            <input
-              type="text"
-              key={`${e.id}input`}
-              value={e.name}
-              onChange={(f) => modifyTag(e.id, f.target.value)}
-              className="inputTagContainer"
-            />
-            <button key={`${e.id}remove`} className="removeButtom" onClick={() => removeTag(e.id)}>
-              X
-            </button>
-          </div>
-        ))}
+        {Tags && Tags.length > 0 ? (
+          Tags.map((e) => (
+            <div key={`${e.id}container`}>
+              <input
+                type="text"
+                key={`${e.id}input`}
+                value={e.name}
+                onChange={(f) => modifyTag(e.id, f.target.value)}
+                className="inputTagContainer"
+              />
+              <button
+                key={`${e.id}remove`}
+                className="removeButtom"
+                onClick={() => removeTag(e.id)}
+              >
+                X
+              </button>
+            </div>
+          ))
+        ) : (
+          <>You may create new tag by cliking "+" or during creating new Note</>
+        )}
         <div className="addButtonContainer">
           <button
             className="addButton"
