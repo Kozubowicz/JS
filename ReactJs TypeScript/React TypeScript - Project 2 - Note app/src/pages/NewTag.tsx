@@ -25,7 +25,9 @@ export function NewTag() {
             </div>
           ))
         ) : (
-          <>You may create new tag by cliking "+" or during creating new Note</>
+          <div className="noElementsMessage">
+            You may create new tag by cliking "+" or during creating new Note...
+          </div>
         )}
         <div className="addButtonContainer">
           <button

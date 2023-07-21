@@ -19,6 +19,14 @@ h1 {
   margin: 0rem;
 }
 
+.noElementsMessage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: justify;
+  margin: 0rem 0.5rem;
+}
+
 .appContainer {
   display: flex;
   flex-direction: column;
@@ -61,6 +69,7 @@ h1 {
 .searchTagInputContainer {
   display: flex;
   justify-content: center;
+  margin: 0rem 0.5rem;
 }
 .searchTagInput {
   color: white;
@@ -89,13 +98,14 @@ h1 {
   border-bottom: 1px solid;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .removeButtom {
   background-color: transparent;
 
   font-size: 1.5rem;
   font-weight: 900;
-  color: dimgrey;
+  color: rgb(230, 44, 44);
   border: none;
 }
 .NoteTags {

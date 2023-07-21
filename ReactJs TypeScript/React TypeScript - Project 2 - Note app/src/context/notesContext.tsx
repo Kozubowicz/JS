@@ -68,6 +68,7 @@ export function NotesContextProvider({ children }: NotesContextProviderProps) {
     const matchingNotes = Notes.filter((note) =>
       note.tagsId.some((tagId) => matchingNoteIds.includes(tagId))
     );
+    console.log(matchingNotes);
 
     return matchingNotes;
   }
