@@ -1,7 +1,10 @@
 import { useInstaContext } from "../Context/InstaContext";
+import { MyProfile } from "./MyProfile";
 import Logo from "/Logo.png";
-
-export function NavBar() {
+type NavBarProps = {
+  setLogSign: (e: boolean) => void;
+};
+export function NavBar({ setLogSign }: NavBarProps) {
   const {
     LightDarkModeChanger,
     DarkMode,
@@ -10,11 +13,13 @@ export function NavBar() {
     aspectRatio,
     searchUserResult,
     serachUser,
+    tokenId,
+    myProfile,
   } = useInstaContext();
 
   return (
     <>
-      <div className={`NavBar ${aspectRatio <= 0.9 ? "mobile" : ""}`}>
+      <div className={`NavBar ${aspectRatio <= 0.9 ? "mobile" : ""} ${DarkMode && "dark"}`}>
         <div>
           <div className="LightDarkModeSet">
             Dark Mode
@@ -26,14 +31,19 @@ export function NavBar() {
             />
           </div>
 
-          <div className="TitleLogoContainer" onClick={() => setUserId("")}>
+          <div
+            className="TitleLogoContainer"
+            onClick={() => {
+              setUserId(""), setLogSign(false);
+            }}
+          >
             <label className="InstaTitle">Insta App</label>
             <img src={Logo} width={40} />
           </div>
 
           <input
             type="text"
-            className={`searchBar ${DarkMode ? "dark" : ""}`}
+            className={`inputBar ${DarkMode ? "dark" : ""}`}
             onChange={(e) => serachUser(e.target.value)}
           />
 
@@ -49,6 +59,17 @@ export function NavBar() {
             ))}
           </div>
         </div>
+        {tokenId && (
+          <div style={{ padding: "0vh 0vh 10rem 0vh" }}>
+            <MyProfile
+              profileImgSize={"30px"}
+              profileImgUrl={myProfile.profileImg}
+              profileId={myProfile._id}
+              profileName={myProfile.userName}
+              profile={true}
+            />
+          </div>
+        )}
       </div>
     </>
   );
